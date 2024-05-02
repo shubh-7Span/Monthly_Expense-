@@ -15,7 +15,6 @@ export const useExpenseStore = defineStore({
   actions: {
     addExpense(expense) {
       this.expenses.push(expense);
-      this.persistToLocalStorage()
 
     },
 
@@ -23,18 +22,16 @@ export const useExpenseStore = defineStore({
     updateExpense(index, expense) {
       if (index >= 0) {
         this.expenses.splice(index, 1, expense);
-        this.persistToLocalStorage();
       }
     },  
     
     
     deleteExpense(index) {
       this.expenses.splice(index,1);
-      this.persistToLocalStorage()
+   
     },
       
-    persistToLocalStorage() {
-      localStorage.setItem(localStorageKey, JSON.stringify(this.expenses));
-    },
+   
   },
+  persist: true,
 });
